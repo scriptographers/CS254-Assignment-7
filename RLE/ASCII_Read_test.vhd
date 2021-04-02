@@ -8,14 +8,12 @@ entity ASCII_Read_test is
 end entity;
 
 architecture reader of ASCII_Read_test is
-	component RLE
+	component RLE is
 		port (
 			clk      : in std_logic;
-			a        : in std_logic_vector (7 downto 0);
-			z        : out std_logic_vector (7 downto 0);
-			z2       : out std_logic_vector (7 downto 0);
-			dataline : out std_logic;
-			ints     : out integer);
+			input    : in std_logic_vector (7 downto 0);
+			output   : out std_logic_vector (7 downto 0);
+			dataline : out std_logic);
 	end component;
 
 	signal input_sig, output_sig, z2 : std_logic_vector (7 downto 0);
@@ -24,7 +22,7 @@ architecture reader of ASCII_Read_test is
 	signal int : integer;
 begin
 	dut_instance : RLE
-	port map(clk => clock, a => input_sig, z => output_sig, dataline => dl, ints => int, z2 => z2);
+	port map(clk => clock, input => input_sig, output => output_sig, dataline => dl);
 
 	process
 		file input_file : text open read_mode is "/home/devansh/PROJECTS/quartus/Assignment7/input.txt";
