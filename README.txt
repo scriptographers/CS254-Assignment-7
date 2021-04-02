@@ -7,10 +7,10 @@ Team Members:
 File Descriptions:
 
 Q1:
-    RLE.vhd : Contains the Run Length Encoder using behavorial coding
-    ASCII_Read_test.vhd : Modified Testbench for RLE.vhd
-    input.txt : Input Testcase
-    output.txt : Output of Testcase
-    waveform.png : Waveform of the simulation
-    report.pdf : Description of implementation
+    RLE.vhd                         : Contains the Run Length Encoder using behavorial coding
+    ASCII_Read_test.vhd             : Modified Testbench for RLE.vhd
+    input.txt                       : Input Testcase
+    output.txt                      : Output of Testcase
+    waveform_1.png & waveform_2.png : Waveforms of the simulation
+    report.pdf                      : Description of implementation
     
