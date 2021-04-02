@@ -2,6 +2,7 @@ library ieee, std;
 use ieee.std_logic_1164.all;
 use ieee.std_logic_textio.all;
 use std.textio.all;
+use ieee.numeric_std.all; -- for the signed, unsigned types and arithmetic ops
 
 entity ASCII_Read_test is
 end entity;
@@ -12,15 +13,18 @@ architecture reader of ASCII_Read_test is
 			clk      : in std_logic;
 			a        : in std_logic_vector (7 downto 0);
 			z        : out std_logic_vector (7 downto 0);
-			dataline : out std_logic);
+			z2       : out std_logic_vector (7 downto 0);
+			dataline : out std_logic;
+			ints     : out integer);
 	end component;
 
-	signal input_sig, output_sig : std_logic_vector (7 downto 0);
+	signal input_sig, output_sig, z2 : std_logic_vector (7 downto 0);
 	signal dl : std_logic := '0';
 	signal clock : std_logic;
+	signal int : integer;
 begin
 	dut_instance : RLE
-	port map(clk => clock, a => input_sig, z => output_sig, dataline => dl);
+	port map(clk => clock, a => input_sig, z => output_sig, dataline => dl, ints => int, z2 => z2);
 
 	process
 		file input_file : text open read_mode is "/home/devansh/PROJECTS/quartus/Assignment7/input.txt";
