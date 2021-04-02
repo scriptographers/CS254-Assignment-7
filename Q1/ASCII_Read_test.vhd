@@ -16,10 +16,9 @@ architecture reader of ASCII_Read_test is
 			dataline : out std_logic);
 	end component;
 
-	signal input_sig, output_sig, z2 : std_logic_vector (7 downto 0);
+	signal input_sig, output_sig : std_logic_vector (7 downto 0);
 	signal dl : std_logic := '0';
 	signal clock : std_logic;
-	signal int : integer;
 begin
 	dut_instance : RLE
 	port map(clk => clock, input => input_sig, output => output_sig, dataline => dl);
