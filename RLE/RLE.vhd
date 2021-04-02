@@ -21,9 +21,13 @@ architecture struct of RLE is
   signal previous : std_logic_vector (7 downto 0);
   signal previous1 : std_logic_vector (7 downto 0);
   signal count : unsigned (7 downto 0) := "00000000";
-  signal input_counter : integer := 1;
-  signal buf : offsets_type;
-  -- signal buf : std_logic_vector (800 downto 0);
+  signal input_counter : integer := 0;
+  signal output_counter : integer := 0;
+  signal proc_counter : integer := 0;
+  signal char_counter : integer := 1;
+  signal signal_counter : integer := 0;
+  signal in_buf : offsets_type;
+  signal out_buf : offsets_type;
 begin
 
   process (clk)
@@ -31,10 +35,20 @@ begin
     if (rising_edge(clk)) then
       if (count < "00001001") then
         input_counter <= input_counter + 1;
-        buf(input_counter) <= a;
-        ints <= input_counter;
-        z <= buf(input_counter - 1);
-        z2 <= buf(input_counter - 1);
+        in_buf(input_counter) <= a;
+        -- ints <= input_counter;
+
+        if (input_counter > 1) then
+          proc_counter <= proc_counter + 1;
+        end if;
+        if (in_buf(proc_counter) = in_buf(proc_counter + 1)) then
+          char_counter <= char_counter + 1;
+        else
+          char_counter <= 1;
+        end if;
+
+        ints <= char_counter;
+
         dataline <= '1';
         if (count = "00001000") then
           dataline <= '0';
